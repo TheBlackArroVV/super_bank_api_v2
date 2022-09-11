@@ -44,7 +44,7 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
-  config.before(:each) do
+  config.before do
     system('RAKE_ENV=test rake db:reset')
   end
 
