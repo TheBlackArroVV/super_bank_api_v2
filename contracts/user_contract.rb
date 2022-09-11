@@ -10,6 +10,6 @@ class UserContract < Dry::Validation::Contract
   end
 
   rule(:email) do
-    key.failure('email already in use') unless User.find(email: value).nil?
+    key.failure('Email already in use') unless User.find(email: value).nil?
   end
 end

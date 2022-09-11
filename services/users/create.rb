@@ -9,7 +9,7 @@ module Services
 
       def perform
         validate!
-        return Result.new(422, form.errors.to_h) unless form.errors.empty?
+        return Result.new(422, contract.errors.to_h) unless contract.errors.empty?
 
         user = User.create(user_params)
         Result.new(201, user)
@@ -18,10 +18,10 @@ module Services
       private
 
       def validate!
-        @form = ::UserContract.new.call(params)
+        @contract = ::UserContract.new.call(params)
       end
 
-      attr_reader :params, :form
+      attr_reader :params, :contract
 
       def user_params
         {
