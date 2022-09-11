@@ -16,6 +16,7 @@ Dir[File.join(__dir__, 'contracts', '*.rb')].sort.each { |file| require file }
 
 class App < Roda
   plugin :hash_routes
+  plugin :request_headers
 
   ::Unreloader.require('routes') {}
   ::Unreloader.require('services/**/*.rb') {}

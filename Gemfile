@@ -13,5 +13,11 @@ gem 'rack-unreloader'
 gem 'rake'
 gem 'roda'
 gem 'rspec'
-gem 'rubocop', group: 'development'
 gem 'sequel'
+
+group 'development' do
+  gem 'rubocop'
+  gem 'rubocop-rake'
+  gem 'rubocop-rspec'
+  gem 'rubocop-sequel'
+end

@@ -1,18 +1,18 @@
 RSpec.describe Services::Users::SignIn do
   subject(:service) { described_class.new(params) }
 
-  context '#perform' do
+  describe '#perform' do
     subject(:perform) { service.perform }
 
     let!(:user) { User.create(email: 'email', password: 'Password') }
-    let!(:params) { { email: 'email', password: 'Password' } }
+    let(:params) { { email: 'email', password: 'Password' } }
 
     it { expect(perform.status).to eq(201) }
     it { expect { perform }.to change(AuthToken, :count).by(1) }
 
     %w[email password].each do |attribute|
       context "when #{attribute} is missing" do
-        let!(:params) { { email: 'email', password: 'Password' }.merge!(attribute.to_sym => '') }
+        let(:params) { { email: 'email', password: 'Password' }.merge!(attribute.to_sym => '') }
 
         it { expect(perform.status).to eq(404) }
         it { expect(perform.object).to eq({ user: ['not found'] }) }
