@@ -2,6 +2,8 @@ class User < Sequel::Model(Database.instance.db)
   include Attributes
   include BCrypt
 
+  one_to_one :auth_token
+
   def password
     @password ||= Password.new(password_hash)
   end

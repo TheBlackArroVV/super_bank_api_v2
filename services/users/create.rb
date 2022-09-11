@@ -12,7 +12,8 @@ module Services
         return Result.new(422, contract.errors.to_h) unless contract.errors.empty?
 
         user = User.create(user_params)
-        Result.new(201, user)
+        auth_token = create_auth_token(user.id)
+        Result.new(201, auth_token.to_hash.except(:id, :user_id))
       end
 
       private
@@ -29,6 +30,10 @@ module Services
           email: params[:email],
           password: params[:password]
         }
+      end
+
+      def create_auth_token(user_id)
+        AuthToken.create(user_id: user_id, token: ::SecureRandom.hex(32))
       end
     end
   end

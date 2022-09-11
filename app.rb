@@ -3,6 +3,7 @@ require 'fast_jsonapi'
 require 'bcrypt'
 require 'dry-validation'
 require 'rack/unreloader'
+require 'securerandom'
 
 require_relative 'db/database.rb'
 
