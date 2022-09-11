@@ -3,6 +3,7 @@ class User < Sequel::Model(Database.instance.db)
   include BCrypt
 
   one_to_one :auth_token
+  one_to_many :wallets
 
   def password
     @password ||= Password.new(password_hash)
