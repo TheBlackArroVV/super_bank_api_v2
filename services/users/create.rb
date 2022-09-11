@@ -18,11 +18,11 @@ module Services
 
       private
 
+      attr_reader :params, :contract
+
       def validate!
         @contract = ::UserContract.new.call(params)
       end
-
-      attr_reader :params, :contract
 
       def user_params
         {

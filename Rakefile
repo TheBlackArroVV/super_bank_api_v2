@@ -12,11 +12,11 @@ namespace :db do
     end
   end
 
-  desc "Perform migration reset (full rollback and migration)"
+  desc 'Perform migration reset (full rollback and migration)'
   task :reset do
     Sequel.connect(ENV.fetch('DATABASE_URL')) do |db|
-      Sequel::Migrator.run(db, "db/migrations", :target => 0)
-      Sequel::Migrator.run(db, "db/migrations")
+      Sequel::Migrator.run(db, 'db/migrations', target: 0)
+      Sequel::Migrator.run(db, 'db/migrations')
     end
   end
 end

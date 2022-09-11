@@ -5,7 +5,7 @@ require 'dry-validation'
 require 'rack/unreloader'
 require 'securerandom'
 
-require_relative 'db/database.rb'
+require_relative 'db/database'
 
 dev = ENV['RACK_ENV'] == 'development'
 Unreloader = Rack::Unreloader.new(subclasses: %w[Roda], reload: dev) { App }

@@ -8,13 +8,15 @@ RSpec.describe Services::Users::Create do
       let(:params) { { email: 'email', password: 'password', password_confirmation: 'password' } }
 
       it { expect(perform.status).to eq(201) }
+      it { expect { perform }.to change(User, :count).by(1) }
+      it { expect { perform }.to change(AuthToken, :count).by(1) }
     end
 
     context 'when params are invalid' do
       let(:params) { { email: 'email', password: 'password' } }
 
       it { expect(perform.status).to eq(422) }
-      it { expect(perform.object).to eq({ email: ['Email already in use'], password_confirmation: ['is missing'] }) }
+      it { expect(perform.object).to eq({ password_confirmation: ['is missing'] }) }
     end
   end
 end

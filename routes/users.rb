@@ -9,5 +9,13 @@ class App
         result.object.to_json
       end
     end
+
+    r.on 'sign_in' do
+      r.post do
+        result = ::Services::Users::SignIn.new(params).perform
+        response.status = result.status
+        result.object.to_json
+      end
+    end
   end
 end
